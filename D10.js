@@ -13,29 +13,51 @@ REGOLE
   Crea una variabile chiamata "sum" e assegnaci il risultato della somma tra i valori 10 e 20.
 */
 
+let sum = 10 + 20
+console.log(sum)
+
 /* ESERCIZIO B
   Crea una variabile chiamata "random" e assegnaci un numero casuale tra 0 e 20 (deve essere generato dinamicamente a ogni esecuzione).
 */
+
+let random = Math.floor(Math.random() * 20)
+console.log(random)
 
 /* ESERCIZIO C
   Crea una variabile chiamata "me" e assegnaci un oggetto contenente le seguenti proprietà: name = il tuo nome, surname = il tuo cognome, age = la tua età.
 */
 
+let me = {
+  name: 'Luca',
+  surname: 'Capasso',
+  age: '24',
+}
+
 /* ESERCIZIO D
   Crea del codice per rimuovere programmaticamente la proprietà "age" dall'oggetto precedentemente creato.
 */
 
+delete me.age
 /* ESERCIZIO E
   Crea del codice per aggiungere programmaticamente all'oggetto precedentemente creato un array chiamato "skills", contenente i linguaggi di programmazione che conosci.
 */
 
+me.skills = []
+console.log(me)
+
 /* ESERCIZIO F
   Crea un pezzo di codice per aggiungere un nuovo elemento all'array "skills" contenuto nell'oggetto "me".
 */
+let newSkill = 'Javascript'
+me.skills.push(newSkill)
+console.log(me)
 
 /* ESERCIZIO G
-  Crea un pezzo di codice per rimuovere programmaticamente l'ultimo elemento dall'array "skills" contenuto nell'oggetto "me".
+Crea un pezzo di codice per rimuovere programmaticamente l'ultimo elemento dall'array "skills" contenuto nell'oggetto "me".
 */
+
+me.skills.pop()
+console.log(me)
 
 // Funzioni
 
@@ -43,9 +65,19 @@ REGOLE
   Crea una funzione chiamata "dice": deve generare un numero casuale tra 1 e 6.
 */
 
+const dice = function () {
+  return Math.floor(Math.random() * 6) + 1
+}
+console.log(dice())
+
 /* ESERCIZIO 2
   Crea una funzione chiamata "whoIsBigger" che riceve due numeri come parametri e ritorna il maggiore dei due.
 */
+
+let whoIsBigger = function (n1, n2) {
+  return Math.max(n1, n2)
+}
+console.log('Il numero più grande è: ', whoIsBigger(24, 17))
 
 /* ESERCIZIO 3
   Crea una funzione chiamata "splitMe" che riceve una stringa come parametro e ritorna un'array contenente ogni parola della stringa.
@@ -53,10 +85,26 @@ REGOLE
   Es.: splitMe("I love coding") => ritorna ["I", "Love", "Coding"]
 */
 
+const split = function () {
+  const stringa = 'I love coding'
+  const words = stringa.split(' ')
+  console.log(words)
+}
+split()
 /* ESERCIZIO 4
   Crea una funzione chiamata "deleteOne" che riceve una stringa e un booleano come parametri.
   Se il valore booleano è true la funzione deve ritornare la stringa senza il primo carattere, altrimenti la deve ritornare senza l'ultimo.
 */
+
+const deleteOne = function (string, boolean) {
+  if (boolean === true) {
+    return string.slice(1)
+  } else {
+    return string.slice(0, -1)
+  }
+}
+console.log(deleteOne('Luca ha 24 anni', true))
+console.log(deleteOne('Luca ha 23 anni', false))
 
 /* ESERCIZIO 5
   Crea una funzione chiamata "onlyLetters" che riceve una stringa come parametro e la ritorna eliminando tutte le cifre numeriche.
@@ -64,13 +112,45 @@ REGOLE
   Es.: onlyLetters("I have 4 dogs") => ritorna "I have dogs"
 */
 
+const onlyLetters = function (string) {
+  let stringa = string
+  return (stringa = stringa.replaceAll(/[0-9]/g, ''))
+}
+console.log(onlyLetters('Luca ha 24 anni'))
+
 /* ESERCIZIO 6
   Crea una funzione chiamata "isThisAnEmail" che riceve una stringa come parametro e ritorna true se la stringa è un valido indirizzo email.
 */
 
+const isThisAnEmail = function (email) {
+  if (email.includes('@' && '.')) {
+    return true
+  } else {
+    return false
+  }
+}
+
+console.log(isThisAnEmail('pippobaudo@gmail.com'))
+
 /* ESERCIZIO 7
   Scrivi una funzione chiamata "whatDayIsIt" che ritorna il giorno della settimana corrente.
 */
+
+const whatDayIsIt = function () {
+  let daysOfWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ]
+  let currentDate = new Date()
+  let day = currentDate.getDay() // Ottiene il numero del giorno della settimana
+  return daysOfWeek[day] // Ritorna il nome del giorno della settimana
+}
+console.log(whatDayIsIt())
 
 /* ESERCIZIO 8
   Scrivi una funzione chiamata "rollTheDices" che riceve un numero come parametro.
@@ -85,14 +165,71 @@ REGOLE
   }
 */
 
+// Funzione che simula il lancio di un dado (ritorna un numero casuale da 1 a 6)
+const dice1 = function () {
+  return Math.floor(Math.random() * 6) + 1 // Numero casuale tra 1 e 6
+}
+
+// Funzione rollTheDices che riceve un numero n come parametro
+const rollTheDices = function (n) {
+  let results = {
+    sum: 0, // Somma totale dei valori
+    valore: [], // Array che contiene i valori estratti
+  }
+
+  for (let i = 0; i < n; i++) {
+    let roll = dice1() // Lancia il dado
+    results.valore.push(roll) // Aggiungi il valore estratto all'array
+    results.sum += roll // Aggiungi il valore estratto alla somma totale
+  }
+
+  return results // Ritorna l'oggetto contenente somma e valori
+}
+
+console.log(rollTheDices(3)) // Esempio con 3 lanci di dado
+
 /* ESERCIZIO 9
   Scrivi una funzione chiamata "howManyDays" che riceve una data come parametro e ritorna il numero di giorni trascorsi da tale data.
 */
+
+const howManyDays = function (date) {
+  // Ottieni la data di oggi
+  let today = new Date()
+
+  // Crea un oggetto Date per la data fornita dall'utente usando Date.UTC
+  let inputDate = new Date(
+    Date.UTC(date.split('-')[0], date.split('-')[1] - 1, date.split('-')[2])
+  )
+
+  // Calcola la differenza in millisecondi
+  let difference = today.getTime() - inputDate.getTime()
+
+  // Converti i millisecondi in giorni
+  let days = difference / (1000 * 60 * 60 * 24)
+
+  // Arrotonda il numero di giorni
+  return Math.floor(days)
+}
+
+console.log(howManyDays('2024-10-1'))
 
 /* ESERCIZIO 10
   Scrivi una funzione chiamata "isTodayMyBirthday" che deve ritornare true se oggi è il tuo compleanno, falso negli altri casi.
 */
 
+const isTodayMyBirthday = function (birthDate) {
+  let today = new Date()
+  let birthday = new Date(birthDate)
+  if (
+    today.getDate() === birthday.getDate() &&
+    today.getMonth() === birthday.getMonth()
+  ) {
+    return true
+  } else {
+    return false
+  }
+}
+console.log(isTodayMyBirthday('2000-07-22'))
 // Arrays & Oggetti
 
 // NOTA: l'array "movies" usato in alcuni esercizi è definito alla fine di questo file
@@ -101,6 +238,21 @@ REGOLE
   Scrivi una funzione chiamata "deleteProp" che riceve un oggetto e una stringa come parametri; deve ritornare l'oggetto fornito dopo aver eliminato
   in esso la proprietà chiamata come la stringa passata come secondo parametro.
 */
+
+// Creo il mio oggetto
+const myObj = {
+  name: 'Luca',
+  age: 24,
+  city: 'Napoli',
+}
+
+const deleteProp = function (obj, propName) {
+  delete obj[propName] // Elimina la proprietà dall'oggetto
+  return obj // Ritorna l'oggetto aggiornato
+}
+
+const updatedObj = deleteProp(myObj, 'age') // Elimino la proprietà age dall'oggetto
+console.log(updatedObj)
 
 /* ESERCIZIO 12
   Scrivi una funzione chiamata "newestMovie" che trova il film più recente nell'array "movies" fornito.
