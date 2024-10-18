@@ -591,3 +591,18 @@ for (let i = 0; i < 3; i++) {
 /* ESERCIZIO 29
   Crea una funzione chiamata "isItPrime" che riceve un numero come parametro e ritorna true se il numero fornito è un numero primo.
 */
+
+function isItPrime(num) {
+  if (num < 2) {
+    return false
+  }
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) {
+      return false
+    }
+  }
+
+  return true
+}
+
+console.log(isItPrime(2))
